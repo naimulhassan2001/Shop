@@ -14,9 +14,9 @@ class BottomNavBar extends StatelessWidget {
   BottomNavBar({super.key});
 
   List navigationPagesList = [
-    const HomeScreen(),
+    HomeScreen(),
     WishlistScreen(),
-    const HistoryScreen(),
+    HistoryScreen(),
     FolderScreen(),
     ProfileScreen(),
   ];

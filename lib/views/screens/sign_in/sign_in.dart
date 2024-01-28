@@ -1,10 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
+import 'package:shop/controllers/sign_in_controller.dart';
 
 import '../../widgets/custom_button.dart';
 
 class SignInScreen extends StatelessWidget {
-  const SignInScreen({super.key});
+   SignInScreen({super.key});
+
+  SignInController signInController = Get.put(SignInController());
 
   @override
   Widget build(BuildContext context) {
@@ -23,12 +27,14 @@ class SignInScreen extends StatelessWidget {
             const Text("E-mail"),
             SizedBox(height: 4.h),
             TextFormField(
+              controller: signInController.emailController,
               decoration: const InputDecoration(hintText: "Enter you E-mail"),
             ),
             SizedBox(height: 16.h),
             const Text("password"),
             SizedBox(height: 4.h),
             TextFormField(
+              controller: signInController.passwordController,
               decoration: const InputDecoration(hintText: "Enter Password"),
             ),
           ],
@@ -36,7 +42,9 @@ class SignInScreen extends StatelessWidget {
       ),
       bottomNavigationBar: Padding(
         padding: EdgeInsets.only(left: 12.w, right: 12.w, bottom: 24.h),
-        child: CustomButton(title: "Sign In", onTap: () {}),
+        child: CustomButton(title: "Sign In", onTap: () {
+          signInController.signInRepo();
+        }),
       ),
     );
   }

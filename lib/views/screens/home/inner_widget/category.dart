@@ -1,116 +1,138 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
+import 'package:shop/controllers/category_controller.dart';
+import 'package:shop/controllers/product_controller.dart';
 
 import '../../../../utils/app_icons.dart';
 import '../../../../utils/app_string.dart';
 
-
 class CategoryWidget extends StatelessWidget {
-  const CategoryWidget({super.key});
+  CategoryWidget({super.key});
+
+  CategoryController categoryController = Get.put(CategoryController());
+  ProductController productController = Get.put(ProductController());
 
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: EdgeInsets.all(8.w),
       child: SizedBox(
-        height: 150.h,
-        child: ListView.builder(
-          itemCount: 16,
-          scrollDirection: Axis.horizontal,
-          itemBuilder: (context, index) {
-            return  Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                Container(
-                  margin: EdgeInsets.symmetric(horizontal: 6.w),
-                  height: 100.h,
-                  width: 100.w,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(12.r),
-                    color: const Color(0xFFEDF7FF),
+          height: 150.h,
+          child: Obx(
+            () => categoryController.isLoading.value
+                ? const Center(
+                    child: CircularProgressIndicator(),
+                  )
+                : ListView.builder(
+                    itemCount: categoryController!
+                        .categoryModel!.data!.attributes!.length,
+                    scrollDirection: Axis.horizontal,
+                    itemBuilder: (context, index) {
+                      return InkWell(
+                        onTap: () => categoryController.categoryProductRepo(categoryController!
+                            .categoryModel!.data!.attributes![index].sId!),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            Container(
+                              margin: EdgeInsets.symmetric(horizontal: 6.w),
+                              height: 100.h,
+                              width: 100.w,
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(12.r),
+                                color: const Color(0xFFEDF7FF),
+                              ),
+                              child: Image.network(categoryController!
+                                  .categoryModel!
+                                  .data!
+                                  .attributes![index]
+                                  .categoryImage!),
+                            ),
+                            SizedBox(
+                              height: 10.h,
+                            ),
+                            Text(categoryController!
+                                .categoryModel!.data!.attributes![index].name!)
+                          ],
+                        ),
+                      );
+                    },
+                    // scrollDirection: Axis.horizontal,
+                    // children: [
+                    //
+                    //   Column(
+                    //     crossAxisAlignment: CrossAxisAlignment.start,
+                    //     children: [
+                    //       Container(
+                    //         margin: EdgeInsets.only(right: 25.w),
+                    //         height: 50.h,
+                    //         width: 50.w,
+                    //         decoration: BoxDecoration(
+                    //           borderRadius: BorderRadius.circular(12.r),
+                    //           color: const Color(0xFFEDF7FF),
+                    //         ),
+                    //         child: Image.asset(AppIcon.fashion2),
+                    //       ),
+                    //       const Text(AppString.school)
+                    //     ],
+                    //   ),
+                    //   Column(
+                    //     crossAxisAlignment: CrossAxisAlignment.start,
+                    //     children: [
+                    //       Container(
+                    //         margin: EdgeInsets.only(right: 25.w),
+                    //         height: 50.h,
+                    //         width: 50.w,
+                    //         decoration: BoxDecoration(
+                    //           borderRadius: BorderRadius.circular(12.r),
+                    //           color: const Color(0xFFFFEDDD),
+                    //         ),
+                    //         child: Image.asset(AppIcon.fashion3),
+                    //       ),
+                    //       const Text(AppString.sports)
+                    //     ],
+                    //   ),
+                    //   Column(
+                    //     crossAxisAlignment: CrossAxisAlignment.start,
+                    //     children: [
+                    //       Container(
+                    //         margin: EdgeInsets.only(right: 25.w),
+                    //         height: 50.h,
+                    //         width: 50.w,
+                    //         decoration: BoxDecoration(
+                    //           borderRadius: BorderRadius.circular(12.r),
+                    //           color: const Color(0xFFFFEDDD),
+                    //         ),
+                    //         child: Image.asset(AppIcon.fashion4),
+                    //       ),
+                    //       const Text(AppString.electronic)
+                    //     ],
+                    //   ),
+                    //   Column(
+                    //     crossAxisAlignment: CrossAxisAlignment.start,
+                    //     children: [
+                    //       Container(
+                    //         margin: EdgeInsets.only(right: 25.w),
+                    //         height: 50.h,
+                    //         width: 50.w,
+                    //         decoration: BoxDecoration(
+                    //           borderRadius: BorderRadius.circular(12.r),
+                    //           color: const Color(0xFFFFEDDD),
+                    //         ),
+                    //         child: Image.asset(AppIcon.all),
+                    //       ),
+                    //       Container(
+                    //           margin: EdgeInsets.only(left: 6.w),
+                    //           child: const Text(
+                    //             AppString.more,
+                    //           ))
+                    //     ],
+                    //   ),
+                    // ],
                   ),
-                  child: Image.asset(AppIcon.fashion),
-                ),
-                SizedBox(height: 10.h,),
-                const Text(AppString.apparel)
-              ],
-            );
-          },
-          // scrollDirection: Axis.horizontal,
-          // children: [
-          //
-          //   Column(
-          //     crossAxisAlignment: CrossAxisAlignment.start,
-          //     children: [
-          //       Container(
-          //         margin: EdgeInsets.only(right: 25.w),
-          //         height: 50.h,
-          //         width: 50.w,
-          //         decoration: BoxDecoration(
-          //           borderRadius: BorderRadius.circular(12.r),
-          //           color: const Color(0xFFEDF7FF),
-          //         ),
-          //         child: Image.asset(AppIcon.fashion2),
-          //       ),
-          //       const Text(AppString.school)
-          //     ],
-          //   ),
-          //   Column(
-          //     crossAxisAlignment: CrossAxisAlignment.start,
-          //     children: [
-          //       Container(
-          //         margin: EdgeInsets.only(right: 25.w),
-          //         height: 50.h,
-          //         width: 50.w,
-          //         decoration: BoxDecoration(
-          //           borderRadius: BorderRadius.circular(12.r),
-          //           color: const Color(0xFFFFEDDD),
-          //         ),
-          //         child: Image.asset(AppIcon.fashion3),
-          //       ),
-          //       const Text(AppString.sports)
-          //     ],
-          //   ),
-          //   Column(
-          //     crossAxisAlignment: CrossAxisAlignment.start,
-          //     children: [
-          //       Container(
-          //         margin: EdgeInsets.only(right: 25.w),
-          //         height: 50.h,
-          //         width: 50.w,
-          //         decoration: BoxDecoration(
-          //           borderRadius: BorderRadius.circular(12.r),
-          //           color: const Color(0xFFFFEDDD),
-          //         ),
-          //         child: Image.asset(AppIcon.fashion4),
-          //       ),
-          //       const Text(AppString.electronic)
-          //     ],
-          //   ),
-          //   Column(
-          //     crossAxisAlignment: CrossAxisAlignment.start,
-          //     children: [
-          //       Container(
-          //         margin: EdgeInsets.only(right: 25.w),
-          //         height: 50.h,
-          //         width: 50.w,
-          //         decoration: BoxDecoration(
-          //           borderRadius: BorderRadius.circular(12.r),
-          //           color: const Color(0xFFFFEDDD),
-          //         ),
-          //         child: Image.asset(AppIcon.all),
-          //       ),
-          //       Container(
-          //           margin: EdgeInsets.only(left: 6.w),
-          //           child: const Text(
-          //             AppString.more,
-          //           ))
-          //     ],
-          //   ),
-          // ],
-        ),
-      ),
+          )),
     );
   }
 }

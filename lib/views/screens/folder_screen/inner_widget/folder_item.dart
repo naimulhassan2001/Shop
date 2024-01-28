@@ -28,7 +28,7 @@ class FolderItem extends StatelessWidget {
           Expanded(
               flex: 2,
               child: image.isNotEmpty
-                  ? Image.asset(image)
+                  ? Image.network(image)
                   : Image.asset(AppString.profile)),
           SizedBox(
             width: 16.w,

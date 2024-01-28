@@ -28,7 +28,7 @@ class ProductListItem extends StatelessWidget {
       margin: EdgeInsets.only(bottom: 16.h),
       child: Row(
         children: [
-          Expanded(flex: 2, child: Image.asset(image)),
+          Expanded(flex: 2, child: Image.network(image)),
           SizedBox(
             width: 16.w,
           ),

@@ -4,6 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:shop/controllers/category_controller.dart';
+import 'package:shop/controllers/home_controller.dart';
+import 'package:shop/controllers/product_controller.dart';
 
 import '../../../utils/app_string.dart';
 import '../your_cart/your_cart_screen.dart';
@@ -13,8 +16,24 @@ import 'inner_widget/recent_product_girdview.dart';
 import 'inner_widget/search_widget.dart';
 
 
-class HomeScreen extends StatelessWidget {
-  const HomeScreen({super.key});
+class HomeScreen extends StatefulWidget {
+   HomeScreen({super.key});
+
+  @override
+  State<HomeScreen> createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
+  CategoryController categoryController = Get.put(CategoryController());
+
+  ProductController productController = Get.put(ProductController());
+
+  HomeController homeController = Get.put(HomeController()) ;
+  @override
+  void initState() {
+    homeController.getSliderRepo() ;
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -48,11 +67,11 @@ class HomeScreen extends StatelessWidget {
               const SearchWidget(),
 
               // SizedBox(height: 50,),
-              const HomeScreenSilder(),
+              HomeScreenSilder(),
               // SizedBox(height: 50,),
 
                const Text((AppString.category)),
-               const CategoryWidget(),
+                CategoryWidget(),
 
               const Text(AppString.recentProduct),
                RecentProductGirdView(),
