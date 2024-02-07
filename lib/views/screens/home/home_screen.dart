@@ -64,16 +64,23 @@ class _HomeScreenState extends State<HomeScreen> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const SearchWidget(),
+              Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 8.w),
+                  child: const SearchWidget()),
 
               // SizedBox(height: 50,),
               HomeScreenSilder(),
               // SizedBox(height: 50,),
 
-               const Text((AppString.category)),
+               Padding(
+                 padding: EdgeInsets.only(left: 8.w),
+                   child: const Text(AppString.category, style: TextStyle(fontSize: 18))),
                 CategoryWidget(),
-
-              const Text(AppString.recentProduct),
+              SizedBox(height: 5.h,),
+              Padding(
+                  padding: EdgeInsets.only(left: 8.w),
+                  child: const Text(AppString.recentProduct, style: TextStyle(fontSize: 18))),
+              SizedBox(height: 5.h,),
                RecentProductGirdView(),
             ],
           ),

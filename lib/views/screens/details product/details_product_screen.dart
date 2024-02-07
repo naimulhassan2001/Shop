@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:shop/controllers/product_details_controller.dart';
+import 'package:shop/views/widgets/custom_button.dart';
 import '../../../controllers/searchControler.dart';
+import '../../../utils/app_icons.dart';
 import '../../../utils/app_images.dart';
 import '../../../utils/app_string.dart';
 import '../../widgets/costom_multiline_text.dart';
@@ -27,22 +30,7 @@ class DetailsProductScreen extends StatelessWidget {
       appBar: AppBar(
         title: const Text(AppString.detailsProduct),
         centerTitle: true,
-        actions: const [
-          Padding(
-            padding: EdgeInsets.only(right: 20),
-            child: Row(
-              children: [
-                Icon(Icons.shopping_cart_outlined),
-                Align(
-                    alignment: Alignment.topRight,
-                    child: Padding(
-                      padding: EdgeInsets.only(top: 10),
-                      child: Text("5", style: TextStyle(fontSize: 14)),
-                    ))
-              ],
-            ),
-          ),
-        ],
+
       ),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 24),
@@ -50,13 +38,26 @@ class DetailsProductScreen extends StatelessWidget {
           physics: const BouncingScrollPhysics(),
           child: Column(
             children: [
-              SizedBox(
+              Container(
+                  decoration: BoxDecoration(
+                      boxShadow: [
+                        BoxShadow(
+                            color: Colors.grey.shade400,
+                            spreadRadius: 1,
+                            blurRadius: 20,
+                          offset: Offset(1, 3)
+                        )
+                      ]
+                  ),
                   height: 300,
-                  child: Image.network(
-                    productDetailsController!.productDetails_Model!.data!.attributes!.productImage!,
-                    fit: BoxFit.fill,
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(12.r),
+                    child: Image.network(
+                      productDetailsController!.productDetails_Model!.data!.attributes!.productImage!,
+                      fit: BoxFit.fill,
+                    ),
                   )),
-              const SizedBox(height: 8),
+              SizedBox(height: 16.h),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -64,16 +65,37 @@ class DetailsProductScreen extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.start,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      CustomText(title: productDetailsController!.productDetails_Model!.data!.attributes!.productName!, fontSize: 16),
+                      SizedBox(height: 5,),
+                      CustomText(
+                          title: productDetailsController!.productDetails_Model!.data!.attributes!.productName!,
+                          fontSize: 18,
+                        fontWeight: FontWeight.w800,
+                      ),
                       const SizedBox(
                         height: 4,
                       ),
+                      // Row(
+                      //   children: [
+                      //     for(int i = 0; i< 5; i++)
+                      //       Row(
+                      //         children: [
+                      //           Icon(Icons.star_outline_outlined, color: Colors.orangeAccent,),
+                      //         ],
+                      //       )
+                      //   ],
+                      // ),
+                      // const SizedBox(
+                      //   height: 4,
+                      // ),
+
                       Row(
                         children: [
                           CustomText(
-                            title: "\$ ${productDetailsController!.productDetails_Model!.data!.attributes!.productPrice!}",
+                            title: "Price : ${productDetailsController!.productDetails_Model!.data!.attributes!.productPrice!}",
                             fontSize: 18,
+                            fontWeight: FontWeight.w600,
                           ),
+                          SvgPicture.asset(AppIcon.bdTK, height: 14.h,),
                           const SizedBox(
                             width: 4,
                           ),
@@ -181,11 +203,23 @@ class DetailsProductScreen extends StatelessWidget {
               const SizedBox(
                 height: 12,
               ),
-              CustomText(
-                title: AppString.descriptionProduct,
-                fontSize: 16,
-                fontWeight: FontWeight.bold,
-                color: const Color(0xFF393F42),
+              Row(
+                crossAxisAlignment: CrossAxisAlignment.end,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  CustomText(
+                    title: AppString.description,
+                    fontSize: 16,
+                    fontWeight: FontWeight.bold,
+                    color: const Color(0xFF393F42),
+                  ),
+                  // CustomButton(
+                  //   height: 35.h,
+                  //     title: "Add to Cart",
+                  //     onTap: (){
+                  // },
+                  // )
+                ],
               ),
               const SizedBox(
                 height: 8,

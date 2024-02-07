@@ -20,7 +20,7 @@ class CustomMultiLineText extends StatelessWidget {
       textAlign: textAlign,
       style: TextStyle(
         color: color,
-        fontSize: 14,
+        fontSize: 16,
         fontFamily: 'InterInter',
         fontWeight: FontWeight.w400,
       ),

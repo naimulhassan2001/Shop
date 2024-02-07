@@ -49,17 +49,35 @@ class RecentProductGirdView extends StatelessWidget {
                         productController!
                             .product_model!.data!.attributes![index].sId!);
                   },
-                  child: Card(
-                    elevation: 0,
+                  child: Container(
+                    margin: EdgeInsets.all(8),
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(12.r),
+                      color: Colors.white,
+                      boxShadow: [
+                        BoxShadow(
+                            color: Colors.grey.shade300,
+                            blurRadius: 10,
+                            spreadRadius: 1,
+                            offset: Offset(0,0)
+                        )
+                      ],
+                    ),
                     child: Column(
                       mainAxisSize: MainAxisSize.min,
                       children: [
                         Expanded(
                           flex: 8,
-                          child: Image.network(
-                            productController!.product_model!.data!
-                                .attributes![index].productImage!,
-                            fit: BoxFit.fill,
+                          child: Padding(
+                            padding: EdgeInsets.symmetric(horizontal: 8.w, vertical: 8.h),
+                            child: ClipRRect(
+                              borderRadius: BorderRadius.circular(12.r),
+                              child: Image.network(
+                                productController!.product_model!.data!
+                                    .attributes![index].productImage!,
+                                fit: BoxFit.fill,
+                              ),
+                            ),
                           ),
                         ),
                         // Expanded(

@@ -21,7 +21,7 @@ class HomeController extends GetxController {
 
      ApiService.getApi(
       AppUrls.slider,
-      header,
+      {}, isHeader: false
     ).then((responseData){
 
        if (responseData.statusCode == 200) {

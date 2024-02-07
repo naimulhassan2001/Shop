@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:shop/helpers/share_pref_helper.dart';
-import 'package:shop/views/screens/home/inner_widget/bottom_nav_bar.dart';
+import 'package:shop/views/screens/home/home_screen.dart';
+import 'package:shop/views/widgets/bottom_nav_bar.dart';
 import 'package:shop/views/screens/sign_up/sign_up.dart';
 
 import 'themes/theme_light.dart';
@@ -26,12 +27,14 @@ class MyApp extends StatelessWidget {
           theme: lightTheme,
           debugShowCheckedModeBanner: false,
           // home: SignUpScreen(),
-          home: SharePrefHelper.token.isEmpty? SignInScreen():BottomNavBar(),
+          // home: SharePrefHelper.token.isEmpty? SignInScreen():BottomNavBar(),
           //   home: SearchScreen(),
           // home: DetailsProductScreen(),
           //  home: YourCartScreen(),
           // home: PaymentMethodScreen(),
           // home: CheckoutScreen(),
+          // home: HomeScreen(),
+          home: BottomNavBar(),
         ) ;
       },
     );

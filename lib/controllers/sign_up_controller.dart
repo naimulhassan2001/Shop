@@ -30,9 +30,7 @@ class SignUpController extends GetxController {
       "phoneNumber": numberController.text,
       "role":"user",
       "password": passwordController.text
-    } ;
-
-
+    };
     
    var data = await ApiService.postApi(AppUrls.signUp, body, {} , isHeader: false) ;
 
@@ -42,19 +40,9 @@ class SignUpController extends GetxController {
 
    print(data) ;
    print(data.message) ;
-
    var bodyJson = jsonDecode(data.responseJson) ;
-
    print(bodyJson) ;
 
-
-
-
-
   }
-
-
-
-
 
 }

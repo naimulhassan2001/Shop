@@ -6,5 +6,6 @@ class AppIcon {
   static const fashion3= "assets/icons/fashion3.png";
   static const fashion4= "assets/icons/fashion4.png";
   static const all= "assets/icons/all.png";
+  static const bdTK = "assets/icons/bd_taka.svg";
 
 }
