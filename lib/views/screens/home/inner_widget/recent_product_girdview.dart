@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:shop/controllers/product_controller.dart';
 import 'package:shop/controllers/product_details_controller.dart';
+import 'package:shop/utils/app_url/app_urls.dart';
 
 import '../../../../controllers/folder_controller.dart';
 import '../../../../controllers/searchControler.dart';
@@ -73,8 +74,8 @@ class RecentProductGirdView extends StatelessWidget {
                             child: ClipRRect(
                               borderRadius: BorderRadius.circular(12.r),
                               child: Image.network(
-                                productController!.product_model!.data!
-                                    .attributes![index].productImage!,
+                                "${AppUrls.imageUrl}${productController!.product_model!.data!
+                                    .attributes![index].productImage!}",
                                 fit: BoxFit.fill,
                               ),
                             ),

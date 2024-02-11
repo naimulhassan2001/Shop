@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:shop/controllers/product_details_controller.dart';
+import 'package:shop/utils/app_url/app_urls.dart';
 import 'package:shop/views/widgets/custom_button.dart';
 import '../../../controllers/searchControler.dart';
 import '../../../utils/app_icons.dart';
@@ -53,7 +54,7 @@ class DetailsProductScreen extends StatelessWidget {
                   child: ClipRRect(
                     borderRadius: BorderRadius.circular(12.r),
                     child: Image.network(
-                      productDetailsController!.productDetails_Model!.data!.attributes!.productImage!,
+                      "${AppUrls.imageUrl}${productDetailsController!.productDetails_Model!.data!.attributes!.productImage!}",
                       fit: BoxFit.fill,
                     ),
                   )),

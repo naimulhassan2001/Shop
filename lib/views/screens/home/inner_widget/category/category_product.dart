@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import 'package:shop/controllers/category_controller.dart';
 import 'package:shop/controllers/product_details_controller.dart';
 import 'package:shop/utils/app_string.dart';
+import 'package:shop/utils/app_url/app_urls.dart';
 
 class CategoryProductScreen extends StatelessWidget {
   CategoryProductScreen({super.key});
@@ -69,8 +70,8 @@ class CategoryProductScreen extends StatelessWidget {
                           child: ClipRRect(
                             borderRadius: BorderRadius.circular(12.r),
                             child: Image.network(
-                              categoryController!.product_model!.data!
-                                  .attributes![index].productImage!,
+                              "${AppUrls.imageUrl}${categoryController!.product_model!.data!
+                                  .attributes![index].productImage!}",
                               fit: BoxFit.fill,
                             ),
                           ),

@@ -4,6 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:shop/controllers/category_controller.dart';
 import 'package:shop/controllers/product_controller.dart';
+import 'package:shop/utils/app_url/app_urls.dart';
 
 import '../../../../utils/app_icons.dart';
 import '../../../../utils/app_string.dart';
@@ -17,7 +18,7 @@ class CategoryWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.symmetric(vertical :8.h, horizontal: 4.w),
+        margin: EdgeInsets.symmetric(vertical: 8.h, horizontal: 4.w),
         height: 150.h,
         child: Obx(
           () => categoryController.isLoading.value
@@ -30,25 +31,25 @@ class CategoryWidget extends StatelessWidget {
                   scrollDirection: Axis.horizontal,
                   itemBuilder: (context, index) {
                     return InkWell(
-                      onTap: () => categoryController.categoryProductRepo(categoryController!
-                          .categoryModel!.data!.attributes![index].sId!),
+                      onTap: () => categoryController.categoryProductRepo(
+                          categoryController!
+                              .categoryModel!.data!.attributes![index].sId!),
                       child: Padding(
                         padding: EdgeInsets.only(right: 8.0),
                         child: Container(
-                          margin: EdgeInsets.only(left:5.w, top: 5.h, bottom: 5.h),
+                          margin:
+                              EdgeInsets.only(left: 5.w, top: 5.h, bottom: 5.h),
                           decoration: BoxDecoration(
                             boxShadow: [
                               BoxShadow(
                                   color: Colors.grey.shade400,
                                   blurRadius: 10,
                                   spreadRadius: 1,
-                                  offset: Offset(0, 4)
-                              )
+                                  offset: Offset(0, 4))
                             ],
                             borderRadius: BorderRadius.circular(12.r),
                             color: Colors.white,
                           ),
-
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.center,
                             children: [
@@ -59,21 +60,19 @@ class CategoryWidget extends StatelessWidget {
                                   width: 100.w,
                                   child: ClipRRect(
                                     borderRadius: BorderRadius.circular(12.r),
-                                    child: Image.network(categoryController!
-                                        .categoryModel!
-                                        .data!
-                                        .attributes![index]
-                                        .categoryImage!,
-                                      // fit: BoxFit.fill,
-                                    ),
+                                    child: Image.network(
+                                        "${AppUrls.imageUrl}${categoryController.categoryModel!.data!.attributes![index].categoryImage!}",
+                                        fit: BoxFit.fill,
+
+                                        ),
                                   ),
                                 ),
                               ),
                               SizedBox(
-                                height: 8.h,
+                                height: 6.h,
                               ),
-                              Text(categoryController!
-                                  .categoryModel!.data!.attributes![index].name!)
+                              Text(categoryController!.categoryModel!.data!
+                                  .attributes![index].name!)
                             ],
                           ),
                         ),

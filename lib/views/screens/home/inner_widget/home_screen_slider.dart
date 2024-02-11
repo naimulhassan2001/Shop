@@ -4,6 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:shop/controllers/home_controller.dart';
 import 'package:shop/utils/app_colors.dart';
+import 'package:shop/utils/app_url/app_urls.dart';
 
 class HomeScreenSilder extends StatelessWidget {
   HomeScreenSilder({super.key});
@@ -26,7 +27,7 @@ class HomeScreenSilder extends StatelessWidget {
               reverse: false,
             ),
             itemBuilder: (context, index, realIndex) {
-              var item = homeController.silderModel!.data!.attributes![index];
+              var item = homeController.silderModel!.data!.attributes?[index];
               return GestureDetector(
                 child: Padding(
                   padding: EdgeInsets.symmetric(horizontal: 12.w, vertical: 24.h),
@@ -39,7 +40,7 @@ class HomeScreenSilder extends StatelessWidget {
                     decoration: ShapeDecoration(
                         image: DecorationImage(
                             fit: BoxFit.fill,
-                            image: NetworkImage(item!.sliderImage.toString(),)),
+                            image: NetworkImage("${AppUrls.imageUrl}${item!.sliderImage}")),
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(16.r),
                         ),

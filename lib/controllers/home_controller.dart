@@ -24,10 +24,11 @@ class HomeController extends GetxController {
       {}, isHeader: false
     ).then((responseData){
 
+       isLoading.value = false;
        if (responseData.statusCode == 200) {
 
          silderModel = SilderModel.fromJson(jsonDecode(responseData.responseJson));
-         isLoading.value = false;
+
 
        }
      });

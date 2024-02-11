@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:shop/utils/app_url/app_urls.dart';
 
 import 'custom_text.dart';
 
@@ -28,7 +29,7 @@ class ProductListItem extends StatelessWidget {
       margin: EdgeInsets.only(bottom: 16.h),
       child: Row(
         children: [
-          Expanded(flex: 2, child: Image.network(image)),
+          Expanded(flex: 2, child: Image.asset(image)),
           SizedBox(
             width: 16.w,
           ),
