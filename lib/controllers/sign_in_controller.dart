@@ -24,10 +24,13 @@ class SignInController extends GetxController{
       "password": passwordController.text
     };
 
+
+    print("dfdhbfkdhfsdfkkj");
     var data = await ApiService.postApi(AppUrls.signIn, body, {}, isHeader: false);
 
-    // print(data);
-    // print(data.message);
+    print(data);
+    print(data.message);
+    print(data.statusCode);
 
     if(data.statusCode == 200){
       var responseData = jsonDecode(data.responseJson);

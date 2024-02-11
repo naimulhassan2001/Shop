@@ -28,6 +28,9 @@ class CategoryController extends GetxController{
     isLoading.value = true;
     var data = await ApiService.getApi(AppUrls.category, {"Authorization":"Bearer ${SharePrefHelper.token}"});
     isLoading.value = false;
+    print(data.statusCode);
+    print(data.message);
+    print(data.responseJson);
     if (data.statusCode == 200) {
       var responseData = jsonDecode(data.responseJson);
       categoryModel = Category_model.fromJson(responseData);
