@@ -20,7 +20,7 @@ class BottomNavBar extends StatelessWidget {
     WishlistScreen(),
     HistoryScreen(),
     FolderScreen(),
-    (SignInController.isLoggedIn.value) ? ProfileScreen() : SignInScreen(),
+    ProfileScreen(),
   ];
 
   HomeController homeController = Get.put(HomeController());

@@ -13,9 +13,8 @@ import '../views/widgets/bottom_nav_bar.dart';
 class SignInController extends GetxController{
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
-  static RxBool isLoggedIn = false.obs;
 
-  var token;
+  static var token;
 
   Future<void> signInRepo() async {
 
@@ -28,14 +27,13 @@ class SignInController extends GetxController{
 
     var data = await ApiService.postApi(AppUrls.signIn, body, {}, isHeader: false);
 
-    print(data.statusCode);
-    print(data.message);
+    // print(data.statusCode);
+    // print(data.message);
 
     if(data.statusCode == 200){
       var responseData = jsonDecode(data.responseJson);
       token = responseData["data"]["token"];
       await prefs.setString('token', token);
-      isLoggedIn(true);
       Get.to(ProfileScreen());
     }
 
