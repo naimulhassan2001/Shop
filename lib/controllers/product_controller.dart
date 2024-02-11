@@ -19,14 +19,14 @@ class ProductController extends GetxController{
 
   Future<void> productRepo() async {
     isLoading.value = true;
-    var data = await ApiService.getApi(AppUrls.product, {"Authorization": "Bearer ${SharePrefHelper.token}"});
+    var data = await ApiService.getApi(AppUrls.product, {}, isHeader: false);
 
     isLoading(false);
     if(data.statusCode == 200){
       var responseData = jsonDecode(data.responseJson);
       product_model = Product_model.fromJson(responseData);
-      print('Status Code: ${data.statusCode}');
-      print('Message: ${data.message}');
+      print('Status Code: =============================${data.statusCode}');
+      print('Message:========================== ${data.message}');
     }else {
       // Handle the error case here
       print('Error: ${data.statusCode}');

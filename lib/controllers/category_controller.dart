@@ -26,11 +26,9 @@ class CategoryController extends GetxController{
   
   Future<void> categoryRepo() async {
     isLoading.value = true;
-    var data = await ApiService.getApi(AppUrls.category, {"Authorization":"Bearer ${SharePrefHelper.token}"});
+    var data = await ApiService.getApi(AppUrls.category, {}, isHeader: false);
     isLoading.value = false;
-    print(data.statusCode);
-    print(data.message);
-    print(data.responseJson);
+    print("=================$data=================");
     if (data.statusCode == 200) {
       var responseData = jsonDecode(data.responseJson);
       categoryModel = Category_model.fromJson(responseData);

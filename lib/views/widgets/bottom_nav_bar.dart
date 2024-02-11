@@ -1,14 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:shop/controllers/sign_in_controller.dart';
+import 'package:shop/views/screens/sign_in/sign_in.dart';
 
 
-import '../../../../controllers/home_controller.dart';
-import '../../../../utils/app_string.dart';
-import '../../folder_screen/folder_screen.dart';
-import '../../history/history_screen.dart';
-import '../../profile/profile_screen.dart';
-import '../../wishlist/wishlist_screen.dart';
-import '../home_screen.dart';
+import '../../controllers/home_controller.dart';
+import '../../utils/app_string.dart';
+import '../screens/folder_screen/folder_screen.dart';
+import '../screens/history/history_screen.dart';
+import '../screens/profile/profile_screen.dart';
+import '../screens/wishlist/wishlist_screen.dart';
+import '../screens/home/home_screen.dart';
 
 class BottomNavBar extends StatelessWidget {
   BottomNavBar({super.key});

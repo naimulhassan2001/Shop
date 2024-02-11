@@ -41,6 +41,7 @@ dependencies:
   flutter_screenutil: ^5.9.0
   http:
   fluttertoast: ^8.2.4
+  flutter_svg: ^2.0.9
 
 
 dev_dependencies:

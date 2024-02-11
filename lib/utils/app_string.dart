@@ -22,6 +22,7 @@ class AppString {
   static const String appleStore = "Apple Store" ;
   static const String follow = "Follow" ;
   static const String descriptionProduct = "Description of product" ;
+  static const String description = "Description" ;
   static const String addToCart = "Add to Cart" ;
   static const String buyNow = "Buy Now" ;
   static const String history = "History" ;
@@ -45,6 +46,10 @@ class AppString {
   static const String cancel = "Cancel" ;
   static const String create = "Create" ;
   static const String createFolder = "Create Folder" ;
+  static const String signInAccount = "Sign In your account";
+  static const String haveNotAccount = "Don't have any account?";
+  static const String signUp = "Sign UP";
+  static const String products = "Products";
 
 
 
