@@ -5,10 +5,8 @@ import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:shop/services/api_services/api_services.dart';
 import 'package:shop/utils/app_url/app_urls.dart';
-import 'package:shop/views/screens/home/home_screen.dart';
 import 'package:shop/views/screens/profile/profile_screen.dart';
 
-import '../views/widgets/bottom_nav_bar.dart';
 
 class SignInController extends GetxController{
   TextEditingController emailController = TextEditingController();

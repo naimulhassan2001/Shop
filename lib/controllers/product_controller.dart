@@ -1,7 +1,6 @@
 import 'dart:convert';
 
 import 'package:get/get.dart';
-import 'package:shop/helpers/share_pref_helper.dart';
 import 'package:shop/models/Product_Model.dart';
 import 'package:shop/services/api_services/api_services.dart';
 import 'package:shop/utils/app_url/app_urls.dart';

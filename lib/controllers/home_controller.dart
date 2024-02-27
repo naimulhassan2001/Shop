@@ -5,8 +5,6 @@ import 'package:shop/models/silder_model.dart';
 import 'package:shop/services/api_services/api_services.dart';
 import 'package:shop/utils/app_url/app_urls.dart';
 
-import '../helpers/share_pref_helper.dart';
-
 class HomeController extends GetxController {
   RxInt index = 0.obs;
 
@@ -17,7 +15,7 @@ class HomeController extends GetxController {
   Future<void> getSliderRepo() async {
     isLoading.value = true;
 
-    var header = {"Authorization": "Bearer ${SharePrefHelper.token}"};
+    // var header = {"Authorization": "Bearer ${SharePrefHelper.token}"};
 
      ApiService.getApi(
       AppUrls.slider,

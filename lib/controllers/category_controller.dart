@@ -8,7 +8,6 @@ import 'package:shop/services/api_services/api_services.dart';
 import 'package:shop/utils/app_url/app_urls.dart';
 import 'package:shop/views/screens/home/inner_widget/category/category_product.dart';
 
-import '../models/Product_Model.dart';
 
 class CategoryController extends GetxController{
   CategoryProduct_Model? product_model;

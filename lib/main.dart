@@ -2,17 +2,21 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:shop/helpers/share_pref_helper.dart';
-import 'package:shop/views/screens/home/home_screen.dart';
+import 'package:shop/models/hive_model.dart';
 import 'package:shop/views/widgets/bottom_nav_bar.dart';
-import 'package:shop/views/screens/sign_up/sign_up.dart';
-import 'package:syncfusion_flutter_pdfviewer/pdfviewer.dart';
-
 import 'themes/theme_light.dart';
-import 'views/screens/sign_in/sign_in.dart';
-
+import 'package:path_provider/path_provider.dart';
+import 'package:hive/hive.dart';
 Future<void> main() async {
 WidgetsFlutterBinding.ensureInitialized();
   await SharePrefHelper.getSharePrefData();
+
+  var directory = await getApplicationCacheDirectory();
+  Hive.init(directory.path);
+  Hive.registerAdapter(NotesModelAdapter());
+  await Hive.openBox<NotesModel>('database') ;
+
+
   runApp(const MyApp());
 }
 
