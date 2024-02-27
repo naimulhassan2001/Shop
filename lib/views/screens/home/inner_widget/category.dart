@@ -33,48 +33,54 @@ class CategoryWidget extends StatelessWidget {
                     return InkWell(
                       onTap: () => categoryController.categoryProductRepo(
                           categoryController!
-                              .categoryModel!.data!.attributes![index].sId!),
+                              .categoryModel!.data!.attributes![index].sId!,categoryController!
+                          .categoryModel!.data!.attributes![index].name!),
                       child: Padding(
                         padding: EdgeInsets.only(right: 8.0),
-                        child: Container(
-                          margin:
-                              EdgeInsets.only(left: 5.w, top: 5.h, bottom: 5.h),
-                          decoration: BoxDecoration(
-                            boxShadow: [
-                              BoxShadow(
-                                  color: Colors.grey.shade400,
-                                  blurRadius: 10,
-                                  spreadRadius: 1,
-                                  offset: Offset(0, 4))
-                            ],
-                            borderRadius: BorderRadius.circular(12.r),
-                            color: Colors.white,
-                          ),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: [
-                              Padding(
-                                padding: EdgeInsets.all(4.w),
-                                child: SizedBox(
-                                  height: 100.h,
-                                  width: 100.w,
-                                  child: ClipRRect(
-                                    borderRadius: BorderRadius.circular(12.r),
-                                    child: Image.network(
-                                        "${AppUrls.imageUrl}${categoryController.categoryModel!.data!.attributes![index].categoryImage!}",
-                                        fit: BoxFit.fill,
+                        child: Column(
+                          children: [
+                            Container(
+                              margin:
+                                  EdgeInsets.only(left: 5.w, top: 5.h, bottom: 5.h),
+                              decoration: BoxDecoration(
+                                boxShadow: [
+                                  BoxShadow(
+                                      color: Colors.grey.shade400,
+                                      blurRadius: 4,
+                                      spreadRadius: 0,
+                                      offset: Offset(0, 2))
+                                ],
+                                borderRadius: BorderRadius.circular(12.r),
+                                color: Colors.white,
+                              ),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: [
+                                  Padding(
+                                    padding: EdgeInsets.all(4.w),
+                                    child: SizedBox(
+                                      height: 100.h,
+                                      width: 100.w,
+                                      child: ClipRRect(
+                                        borderRadius: BorderRadius.circular(12.r),
+                                        child: Image.network(
+                                            "${AppUrls.imageUrl}${categoryController.categoryModel!.data!.attributes![index].categoryImage!}",
+                                            fit: BoxFit.fill,
 
-                                        ),
+                                            ),
+                                      ),
+                                    ),
                                   ),
-                                ),
+
+                                ],
                               ),
-                              SizedBox(
-                                height: 6.h,
-                              ),
-                              Text(categoryController!.categoryModel!.data!
-                                  .attributes![index].name!)
-                            ],
-                          ),
+                            ),
+                            SizedBox(
+                              height: 4.h,
+                            ),
+                            Text(categoryController!.categoryModel!.data!
+                                .attributes![index].name!, style: TextStyle(color: Color(0xFF54A630)),)
+                          ],
                         ),
                       ),
                     );

@@ -40,7 +40,7 @@ class CategoryController extends GetxController{
 
   }
 
-  Future<void> categoryProductRepo(String categoryId) async {
+  Future<void> categoryProductRepo(String categoryId, name) async {
     isLoading.value = true;
     var data = await ApiService.getApi(
         "${AppUrls.categoryWiseProduct}/$categoryId",
@@ -52,7 +52,7 @@ class CategoryController extends GetxController{
       product_model = CategoryProduct_Model.fromJson(responseData);
       print('Status Code: ${data.statusCode}');
       print('Message: ${data.message}');
-      Get.to(CategoryProductScreen());
+      Get.to(CategoryProductScreen(name: name));
     }else {
       // Handle the error case here
       print('Error: ${data.statusCode}');

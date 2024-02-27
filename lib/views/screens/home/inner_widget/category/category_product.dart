@@ -8,16 +8,20 @@ import 'package:shop/utils/app_string.dart';
 import 'package:shop/utils/app_url/app_urls.dart';
 
 class CategoryProductScreen extends StatelessWidget {
-  CategoryProductScreen({super.key});
+  CategoryProductScreen({super.key, required this.name});
+
+  String name ;
 
   CategoryController categoryController = Get.put(CategoryController()) ;
  ProductDetailsController productDetailsController = Get.put(ProductDetailsController()) ;
 
+
   @override
   Widget build(BuildContext context) {
+
     return Scaffold(
       appBar: AppBar(
-        title: Text(AppString.products),
+        title: Text(name, style: TextStyle(color: Color(0xFF54A630)),),
         centerTitle: true,
       ),
       body: Obx(() => categoryController.Loading.value
@@ -44,7 +48,8 @@ class CategoryProductScreen extends StatelessWidget {
                 onTap: () {
                   productDetailsController.getProductDetailsRepo(
                       categoryController!
-                          .product_model!.data!.attributes![index].sId!);
+                          .product_model!.data!.attributes![index].sId!,categoryController!
+                      .product_model!.data!.attributes![index].productName!);
                 },
                 child: Container(
                   margin: EdgeInsets.all(8),
@@ -56,7 +61,7 @@ class CategoryProductScreen extends StatelessWidget {
                           color: Colors.grey.shade400,
                           blurRadius: 10,
                           spreadRadius: 1,
-                          offset: Offset(0,4)
+                          offset: Offset(0,2)
                       )
                     ],
                   ),
@@ -66,7 +71,7 @@ class CategoryProductScreen extends StatelessWidget {
                       Expanded(
                         flex: 8,
                         child: Padding(
-                          padding: EdgeInsets.all(8.w),
+                          padding: EdgeInsets.all(4.w),
                           child: ClipRRect(
                             borderRadius: BorderRadius.circular(12.r),
                             child: Image.network(

@@ -12,7 +12,7 @@ class ProductDetailsController extends GetxController{
   ProductDetails_Model? productDetails_Model;
   RxBool isLoading = false.obs;
 
-  Future<void> getProductDetailsRepo(String productId) async{
+  Future<void> getProductDetailsRepo(String productId, name) async{
     isLoading.value = true;
     var data = await ApiService.getApi("${AppUrls.product}/$productId", {"Authorization": "Bearer ${SharePrefHelper.token}"});
 
@@ -22,7 +22,7 @@ class ProductDetailsController extends GetxController{
       productDetails_Model = ProductDetails_Model.fromJson(responseData);
       print('Status Code: ${data.statusCode}');
       print('Message: ${data.message}');
-      Get.to(DetailsProductScreen());
+      Get.to(DetailsProductScreen(name:name));
     }else {
       // Handle the error case here
       print('Error: ${data.statusCode}');

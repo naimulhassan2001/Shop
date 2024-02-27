@@ -48,7 +48,8 @@ class RecentProductGirdView extends StatelessWidget {
                   onTap: () {
                     productDetailsController.getProductDetailsRepo(
                         productController!
-                            .product_model!.data!.attributes![index].sId!);
+                            .product_model!.data!.attributes![index].sId!,productController!
+                        .product_model!.data!.attributes![index].productName!);
                   },
                   child: Container(
                     margin: EdgeInsets.all(8),
@@ -70,7 +71,7 @@ class RecentProductGirdView extends StatelessWidget {
                         Expanded(
                           flex: 8,
                           child: Padding(
-                            padding: EdgeInsets.symmetric(horizontal: 8.w, vertical: 8.h),
+                            padding: EdgeInsets.symmetric(horizontal: 4.w, vertical: 4.h),
                             child: ClipRRect(
                               borderRadius: BorderRadius.circular(12.r),
                               child: Image.network(

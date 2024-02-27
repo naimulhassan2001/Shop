@@ -26,7 +26,7 @@ class _SearchScreenState extends State<SearchScreen> {
         appBar: AppBar(
           elevation: 0,
           backgroundColor: Colors.white70,
-          leading: Icon(Icons.arrow_back),
+          // leading: Icon(Icons.arrow_back),
           title: Container(
             height: 45,
             child: TextFormField(
@@ -43,12 +43,12 @@ class _SearchScreenState extends State<SearchScreen> {
                       borderRadius: BorderRadius.circular(12))),
             ),
           ),
-          actions: const [
-            Badge(
-                alignment: Alignment.center,
-                label: Text("2"),
-                child: Icon(Icons.shopping_cart))
-          ],
+          // actions: const [
+          //   Badge(
+          //       alignment: Alignment.center,
+          //       label: Text("2"),
+          //       child: Icon(Icons.shopping_cart))
+          // ],
         ),
         body: Padding(
           padding: const EdgeInsets.all(8.0),
