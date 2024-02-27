@@ -5,6 +5,7 @@ import 'package:shop/helpers/share_pref_helper.dart';
 import 'package:shop/views/screens/home/home_screen.dart';
 import 'package:shop/views/widgets/bottom_nav_bar.dart';
 import 'package:shop/views/screens/sign_up/sign_up.dart';
+import 'package:syncfusion_flutter_pdfviewer/pdfviewer.dart';
 
 import 'themes/theme_light.dart';
 import 'views/screens/sign_in/sign_in.dart';
@@ -34,7 +35,7 @@ class MyApp extends StatelessWidget {
           // home: PaymentMethodScreen(),
           // home: CheckoutScreen(),
           // home: HomeScreen(),
-          home: BottomNavBar(),
+          home: BottomNavBar()
         ) ;
       },
     );
