@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:shop/models/boxes.dart';
 import 'package:shop/models/hive_model.dart';
+import 'package:shop/views/screens/wishlist/inner_widget/wishlist_item.dart';
 import '../../../controllers/wishlist_controller.dart';
 import '../../widgets/wishlist_item.dart';
 import '../details product/details_product_screen.dart';
@@ -36,12 +37,9 @@ class WishlistScreen extends StatelessWidget {
                   return ListView.builder(
                     itemCount: box.length,
                     itemBuilder: (context, index) {
-                      var product = data[index];
+                      NotesModel noteModel = data[index];
             
-                      var name = product.title;
-                      var price = product.price;
-                      var image = product.image ;
-                      var des = product.description ;
+
             
                       return GestureDetector(
                           onTap: () {
@@ -54,10 +52,8 @@ class WishlistScreen extends StatelessWidget {
                             //   value: true,
                             // ));
                           },
-                          child: ProductListItem(
-                            image: image,
-                            name: name,
-                            price: price,
+                          child: WishLisListItem(
+                            notesModel: noteModel,
                             
                           ));
                     },

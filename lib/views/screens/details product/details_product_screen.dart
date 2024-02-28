@@ -30,6 +30,8 @@ class DetailsProductScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
+    hiveController.cartList() ;
     return Scaffold(
       appBar: AppBar(
         title: Text(
@@ -84,6 +86,7 @@ class DetailsProductScreen extends StatelessWidget {
                         ))),
                 IconButton(
                     onPressed: () {
+
                       NotesModel notesModel = NotesModel(
                           title: name,
                           description: productDetailsController
@@ -102,10 +105,10 @@ class DetailsProductScreen extends StatelessWidget {
                     icon: CircleAvatar(
                         radius: 20.r,
                         backgroundColor: Colors.black12,
-                        child: const Icon(
-                          Icons.favorite_border,
+                        child: Obx(() => Icon(
+                          hiveController.isCartAdded.contains(name) ?  Icons.favorite : Icons.favorite_border,
                           color: Color(0xFF54A630),
-                        ))),
+                        )))),
                 IconButton(
                     onPressed: () {
                       folderCreateDialog.createFolder(
@@ -134,7 +137,7 @@ class DetailsProductScreen extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.start,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        SizedBox(
+                        const SizedBox(
                           height: 5,
                         ),
                         CustomText(
