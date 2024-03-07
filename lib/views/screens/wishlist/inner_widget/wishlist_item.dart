@@ -25,7 +25,7 @@ class WishLisListItem extends StatelessWidget {
         children: [
           Expanded(
               flex: 2,
-              child: Image.network("${AppUrls.imageUrl}${notesModel.image}")),
+              child: Image.network("${notesModel.image}")),
           SizedBox(
             width: 16.w,
           ),

@@ -60,7 +60,7 @@ class DetailsProductScreen extends StatelessWidget {
                   child: ClipRRect(
                     borderRadius: BorderRadius.circular(0.r),
                     child: Image.network(
-                      "${AppUrls.imageUrl}${productDetailsController!.productDetails_Model!.data!.attributes!.productImage!}",
+                      "${productDetailsController!.productDetails_Model!.data!.attributes!.productImage!}",
                       fit: BoxFit.fill,
                     ),
                   )),

@@ -37,7 +37,8 @@ class RecentProductGirdView extends StatelessWidget {
               itemCount:
                   productController.product_model!.data!.attributes!.length,
               gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                  childAspectRatio: 4 / 5, crossAxisCount: 2),
+                  childAspectRatio: 4 / 5,
+                  crossAxisCount: 2),
               itemBuilder: (context, index) {
                 var product = searchScreenController.products[index];
                 var image = product['image'];
@@ -75,9 +76,9 @@ class RecentProductGirdView extends StatelessWidget {
                             child: ClipRRect(
                               borderRadius: BorderRadius.circular(12.r),
                               child: Image.network(
-                                "${AppUrls.imageUrl}${productController!.product_model!.data!
+                                "${productController!.product_model!.data!
                                     .attributes![index].productImage!}",
-                                fit: BoxFit.fill,
+                                fit: BoxFit.fitWidth,
                               ),
                             ),
                           ),
@@ -117,6 +118,9 @@ class RecentProductGirdView extends StatelessWidget {
                 );
               },
             ),
-          ));
+
+    ));
+
+
   }
 }

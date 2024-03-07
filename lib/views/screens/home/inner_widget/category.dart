@@ -64,7 +64,8 @@ class CategoryWidget extends StatelessWidget {
                                       child: ClipRRect(
                                         borderRadius: BorderRadius.circular(12.r),
                                         child: Image.network(
-                                            "${AppUrls.imageUrl}${categoryController.categoryModel!.data!.attributes![index].categoryImage!}",
+                                            // "${AppUrls.imageUrl}${categoryController.categoryModel!.data!.attributes![index].categoryImage!}",
+                                          "${categoryController.categoryModel!.data!.attributes![index].categoryImage!}",
                                             fit: BoxFit.fill,
 
                                             ),

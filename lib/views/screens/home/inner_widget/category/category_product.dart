@@ -75,7 +75,7 @@ class CategoryProductScreen extends StatelessWidget {
                           child: ClipRRect(
                             borderRadius: BorderRadius.circular(12.r),
                             child: Image.network(
-                              "${AppUrls.imageUrl}${categoryController!.product_model!.data!
+                              "${categoryController!.product_model!.data!
                                   .attributes![index].productImage!}",
                               fit: BoxFit.fill,
                             ),
