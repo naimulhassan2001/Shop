@@ -31,96 +31,40 @@ class RecentProductGirdView extends StatelessWidget {
             child: CircularProgressIndicator(),
           )
         : SizedBox(
-            child: GridView.builder(
-              shrinkWrap: true,
-              physics: const NeverScrollableScrollPhysics(),
-              itemCount:
-                  productController.product_model!.data!.attributes!.length,
-              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                  childAspectRatio: 4 / 5,
-                  crossAxisCount: 2),
-              itemBuilder: (context, index) {
-                var product = searchScreenController.products[index];
-                var image = product['image'];
-                var name = product['name'];
-                var price = product['price'];
+            child: Wrap(
+            alignment: WrapAlignment.spaceAround,
 
-                return GestureDetector(
-                  onTap: () {
-                    productDetailsController.getProductDetailsRepo(
-                        productController!
-                            .product_model!.data!.attributes![index].sId!,productController!
-                        .product_model!.data!.attributes![index].productName!);
-                  },
-                  child: Container(
-                    margin: EdgeInsets.all(8),
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(12.r),
-                      color: Colors.white,
-                      boxShadow: [
-                        BoxShadow(
-                            color: Colors.grey.shade300,
-                            blurRadius: 10,
-                            spreadRadius: 1,
-                            offset: Offset(0,0)
-                        )
-                      ],
-                    ),
-                    child: Column(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        Expanded(
-                          flex: 8,
-                          child: Padding(
-                            padding: EdgeInsets.symmetric(horizontal: 4.w, vertical: 4.h),
-                            child: ClipRRect(
-                              borderRadius: BorderRadius.circular(12.r),
-                              child: Image.network(
-                                "${productController!.product_model!.data!
-                                    .attributes![index].productImage!}",
-                                fit: BoxFit.fitWidth,
-                              ),
-                            ),
-                          ),
-                        ),
-                        // Expanded(
-                        //   flex: 7,
-                        //   child: Column(
-                        //     children: [
-                        //       Text(name),
-                        //       Text(price),
-                        //       Row(
-                        //         mainAxisAlignment: MainAxisAlignment.spaceAround,
-                        //         children: [
-                        //           IconButton(
-                        //               onPressed: () {},
-                        //               icon: CircleAvatar(
-                        //                   radius: 20.r,
-                        //                   backgroundColor: Colors.black12,
-                        //                   child: const Icon(Icons.favorite_border))),
-                        //           IconButton(
-                        //               onPressed: () {
-                        //                 folderCreateDialog.createFolder(
-                        //                     context, name, image, price);
-                        //               },
-                        //               icon: CircleAvatar(
-                        //                   radius: 20.r,
-                        //                   backgroundColor: Colors.black12,
-                        //                   child: const Icon(Icons.edit_calendar))),
-                        //         ],
-                        //       )
-                        //     ],
-                        //   ),
-                        // )
-                      ],
+            // runSpacing: 10.0,
+            children:
+                productController.product_model!.data!.attributes!.map((item) {
+              return GestureDetector(
+                onTap: () {
+                  productDetailsController.getProductDetailsRepo(
+                      item.sId!, item.productName!);
+                },
+                child: Container(
+                  margin: EdgeInsets.only(left: 5.w, top: 5.h, bottom: 5.h),
+                  decoration: BoxDecoration(
+
+                    borderRadius: BorderRadius.circular(12.r),
+                    color: Colors.white,
+                  ),
+                  child: Chip(
+                    padding: EdgeInsets.zero,
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.all(Radius.circular(16.r)),
+                        side: const BorderSide(
+                          color: Colors.transparent,
+                        )),
+                    label: Image.network(
+                      item.productImage!,
+                      height: 250,
+                      fit: BoxFit.fill,
                     ),
                   ),
-                );
-              },
-            ),
-
-    ));
-
-
+                ),
+              );
+            }).toList(),
+          )));
   }
 }

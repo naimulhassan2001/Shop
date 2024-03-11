@@ -40,7 +40,7 @@ class CategoryController extends GetxController{
   }
 
   Future<void> categoryProductRepo(String categoryId, name) async {
-    isLoading.value = true;
+    // isLoading.value = true;
     var data = await ApiService.getApi(
         "${AppUrls.categoryWiseProduct}/$categoryId",
         {"Authorization": "Bearer ${SharePrefHelper.token}"});

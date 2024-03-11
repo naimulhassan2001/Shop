@@ -32,7 +32,7 @@ class CategoryWidget extends StatelessWidget {
                   itemBuilder: (context, index) {
                     return InkWell(
                       onTap: () => categoryController.categoryProductRepo(
-                          categoryController!
+                          categoryController
                               .categoryModel!.data!.attributes![index].sId!,categoryController!
                           .categoryModel!.data!.attributes![index].name!),
                       child: Padding(

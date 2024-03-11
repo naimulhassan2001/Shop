@@ -30,8 +30,7 @@ class DetailsProductScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
-    hiveController.cartList() ;
+    hiveController.cartList();
     return Scaffold(
       appBar: AppBar(
         title: Text(
@@ -40,8 +39,8 @@ class DetailsProductScreen extends StatelessWidget {
         ),
         centerTitle: true,
       ),
-      body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 4, vertical: 4),
+      body: SingleChildScrollView(
+        padding: EdgeInsets.symmetric(horizontal:12.w, vertical: 16.h),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
@@ -86,7 +85,6 @@ class DetailsProductScreen extends StatelessWidget {
                         ))),
                 IconButton(
                     onPressed: () {
-
                       NotesModel notesModel = NotesModel(
                           title: name,
                           description: productDetailsController
@@ -106,9 +104,11 @@ class DetailsProductScreen extends StatelessWidget {
                         radius: 20.r,
                         backgroundColor: Colors.black12,
                         child: Obx(() => Icon(
-                          hiveController.isCartAdded.contains(name) ?  Icons.favorite : Icons.favorite_border,
-                          color: Color(0xFF54A630),
-                        )))),
+                              hiveController.isCartAdded.contains(name)
+                                  ? Icons.favorite
+                                  : Icons.favorite_border,
+                              color: Color(0xFF54A630),
+                            )))),
                 IconButton(
                     onPressed: () {
                       folderCreateDialog.createFolder(
