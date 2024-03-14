@@ -1,7 +1,6 @@
 
 
 import 'package:flutter/material.dart';
-import 'package:syncfusion_flutter_pdfviewer/pdfviewer.dart';
 
 
 class HistoryScreen extends StatelessWidget {
@@ -9,8 +8,9 @@ class HistoryScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Center(child: SfPdfViewer.asset("assets/pdf/Api_ramadan_calendar.pdf"),),
+    return const Scaffold(
+      body: Center(child: Text("assets/pdf/Api_ramadan_calendar.pdf"),),
+      // body: Center(child: SfPdfViewer.asset("assets/pdf/Api_ramadan_calendar.pdf"),),
     );
   }
 }

@@ -15,13 +15,10 @@ class FolderScreen extends StatelessWidget {
   FolderController folderController = Get.put(FolderController());
 
   List folder = [];
-  bool isAdded = false ;
+  bool isAdded = false;
 
   @override
   Widget build(BuildContext context) {
-
-
-
     for (int i = 0; i < folderController.folderList.length; i++) {
       var item = folderController.folderList[i];
 
@@ -31,15 +28,15 @@ class FolderScreen extends StatelessWidget {
         try {
           folder.forEach((element) {
             if (element.folderName == item.folderName) {
-              isAdded = true ;
+              isAdded = true;
             }
           });
 
-          if(isAdded){
-            isAdded = false ;
-          } else{
-            folder.add(item) ;
-            isAdded = false ;
+          if (isAdded) {
+            isAdded = false;
+          } else {
+            folder.add(item);
+            isAdded = false;
           }
         } catch (e) {}
       }
@@ -49,25 +46,86 @@ class FolderScreen extends StatelessWidget {
       appBar: AppBar(
         title: const Text(AppString.yourFolder),
       ),
-      body: Padding(
+      body: SingleChildScrollView(
           padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 24.h),
-          child:ListView.builder(
-            physics: const BouncingScrollPhysics(),
-            itemCount: folder.length,
-            itemBuilder: (context, index) {
-              var item = folder[index];
+          child: Wrap(
+            alignment: WrapAlignment.start,
+
+            // runSpacing: 10.0,
+            children: folder.map((item) {
               return GestureDetector(
-                onTap: () {
-                  Get.to(FolderListScreen(
-                    folderName: item.folderName,
-                  ));
-                },
-                child: FolderItem(
-                    folderName: item.folderName,
-                    note: item.note,
-                    image: item.image),
-              );
-            },
+                  onTap: () {
+                    Get.to(FolderListScreen(
+                      folderName: item.folderName,
+                    ));
+                  },
+                  child: Stack(children: [
+                    Container(
+                      margin: EdgeInsets.only(left: 5.w, top: 5.h, bottom: 5.h),
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(12.r),
+                        color: Colors.white,
+                      ),
+                      child: Chip(
+                        padding: EdgeInsets.zero,
+                        shape: RoundedRectangleBorder(
+                            borderRadius:
+                                BorderRadius.all(Radius.circular(16.r)),
+                            side: const BorderSide(
+                              color: Colors.transparent,
+                            )),
+                        label: Image.network(
+                          item.image,
+                          height: 250,
+                          fit: BoxFit.fill,
+                        ),
+                      ),
+                    ),
+                    // Positioned(
+                    //     right: 0,
+                    //     bottom: 8,
+                    //     child: IconButton(
+                    //         onPressed: () {
+                    //           // print(
+                    //           //     "before=========================${hiveController.isCartAdded}");
+                    //           // item.delete();
+                    //           // hiveController.cartList();
+                    //           // hiveController.saveCart();
+                    //         },
+                    //         icon: const Icon(
+                    //           Icons.delete,
+                    //           color: Colors.red,
+                    //         ))),
+                    Positioned(
+                        left: 16,
+                        bottom: 8,
+                        child: Container(
+                          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 6),
+                          decoration: BoxDecoration(
+                              color: Colors.grey.withOpacity(0.6),
+                              borderRadius:
+                                  const BorderRadius.all(Radius.circular(20))),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                maxLines: 1,
+                                overflow: TextOverflow.ellipsis,
+                                "Folder: ${item.folderName}",
+                                style: const TextStyle(fontSize: 14, color: Colors.white),
+                              ),
+                              Text(
+                                "Note: ${item.note}",
+                                maxLines: 1,
+                                overflow: TextOverflow.ellipsis,
+                                style: const TextStyle(fontSize: 12, color: Colors.white),
+                              ),
+
+                            ],
+                          ),
+                        ))
+                  ]));
+            }).toList(),
           )),
     );
   }
