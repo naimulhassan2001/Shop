@@ -58,10 +58,10 @@ class BottomNavBar extends StatelessWidget {
                 label: AppString.wishlist),
             BottomNavigationBarItem(
                 icon: Icon(
-                  Icons.file_present_outlined,
+                  Icons.price_change_outlined,
                   color: Colors.black26,
                 ),
-                label: AppString.history),
+                label: AppString.sSPriceList),
             BottomNavigationBarItem(
                 icon: Icon(
                   Icons.folder,

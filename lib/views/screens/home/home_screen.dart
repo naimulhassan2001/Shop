@@ -7,6 +7,7 @@ import 'package:get/get.dart';
 import 'package:shop/controllers/category_controller.dart';
 import 'package:shop/controllers/home_controller.dart';
 import 'package:shop/controllers/product_controller.dart';
+import 'package:shop/views/screens/search_screen/search_screen.dart';
 
 import '../../../utils/app_string.dart';
 import '../your_cart/your_cart_screen.dart';
@@ -48,10 +49,13 @@ class _HomeScreenState extends State<HomeScreen> {
         ),
 
         actions: [
+          // IconButton(onPressed: (){
+          //   Get.to(YourCartScreen());
+          // }, icon: const Icon(Icons.shopping_cart)),
+          // IconButton(onPressed: (){}, icon: const Icon(Icons.notifications_none_outlined))
           IconButton(onPressed: (){
-            Get.to(YourCartScreen());
-          }, icon: const Icon(Icons.shopping_cart)),
-          IconButton(onPressed: (){}, icon: const Icon(Icons.notifications_none_outlined))
+            Get.to(SearchScreen());
+          }, icon: const Icon(Icons.search)),
         ],
       ),
 
@@ -64,9 +68,9 @@ class _HomeScreenState extends State<HomeScreen> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 8.w),
-                  child: const SearchWidget()),
+              // Padding(
+              //     padding: EdgeInsets.symmetric(horizontal: 8.w),
+              //     child: const SearchWidget()),
 
               // SizedBox(height: 50,),
               HomeScreenSilder(),
@@ -74,12 +78,12 @@ class _HomeScreenState extends State<HomeScreen> {
 
                Padding(
                  padding: EdgeInsets.only(left: 8.w),
-                   child: const Text(AppString.category, style: TextStyle(fontSize: 18))),
+                   child: const Text(AppString.category, style: TextStyle(fontSize: 18, color: Color(0xFF54A630)))),
                 CategoryWidget(),
               SizedBox(height: 5.h,),
               Padding(
                   padding: EdgeInsets.only(left: 8.w),
-                  child: const Text(AppString.recentProduct, style: TextStyle(fontSize: 18))),
+                  child: const Text(AppString.recentProduct, style: TextStyle(fontSize: 18,color: Color(0xFF54A630)))),
               SizedBox(height: 5.h,),
                RecentProductGirdView(),
             ],

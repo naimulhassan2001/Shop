@@ -36,6 +36,7 @@ class FolderCreateDialog {
                   height: 16.h,
                 ),
                 TextField(
+                  maxLines: null,
                   controller: noteController,
                   decoration: InputDecoration(
                       labelText: AppString.note,

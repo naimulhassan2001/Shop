@@ -22,13 +22,13 @@ class AppString {
   static const String appleStore = "Apple Store" ;
   static const String follow = "Follow" ;
   static const String descriptionProduct = "Description of product" ;
-  static const String description = "Description" ;
+  static const String description = "Design Description : " ;
   static const String addToCart = "Add to Cart" ;
   static const String buyNow = "Buy Now" ;
-  static const String history = "History" ;
+  static const String sSPriceList = "SS Price List" ;
   static const String deliveryAddress = "Delivery address" ;
   static const String category = "Category" ;
-  static const String recentProduct = "Recent Product" ;
+  static const String recentProduct = "Recent Design" ;
   static const String home = "Home" ;
   static const String wishlist = "Wishlist" ;
   static const String profile = "Profile" ;

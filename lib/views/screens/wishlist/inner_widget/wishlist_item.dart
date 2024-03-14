@@ -1,27 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
+import 'package:shop/controllers/hive_controller.dart';
+import 'package:shop/models/boxes.dart';
+import 'package:shop/models/hive_model.dart';
 import 'package:shop/utils/app_url/app_urls.dart';
 
-import 'custom_text.dart';
+import '../../../widgets/custom_text.dart';
 
+class WishLisListItem extends StatelessWidget {
+  WishLisListItem({super.key, required this.notesModel});
 
-class ProductListItem extends StatelessWidget {
-  ProductListItem({
-    super.key,
-    required this.name,
-    required this.image,
-    this.variant = " ",
-    required this.price,
-  });
+  NotesModel notesModel;
 
-  String image;
-
-  String name;
-
-  String variant;
-
-  String price;
+  HiveController hiveController = Get.put(HiveController()) ;
 
   @override
   Widget build(BuildContext context) {
@@ -30,7 +23,9 @@ class ProductListItem extends StatelessWidget {
       margin: EdgeInsets.only(bottom: 16.h),
       child: Row(
         children: [
-          Expanded(flex: 2, child: Image.network("${AppUrls.imageUrl}$image")),
+          Expanded(
+              flex: 2,
+              child: Image.network("${notesModel.image}")),
           SizedBox(
             width: 16.w,
           ),
@@ -41,7 +36,7 @@ class ProductListItem extends StatelessWidget {
                   Align(
                     alignment: Alignment.topLeft,
                     child: Text(
-                      name,
+                      notesModel.title,
                       maxLines: 1,
                       style: TextStyle(
                           color: const Color(0xFF393F42),
@@ -50,12 +45,24 @@ class ProductListItem extends StatelessWidget {
                           fontWeight: FontWeight.w500),
                     ),
                   ),
-                  SizedBox(height: 8.h,),
-                
-                  CustomText(title: "\$ $price")
+                  SizedBox(
+                    height: 8.h,
+                  ),
+                  CustomText(title: "\$ ${notesModel.price}")
                 ],
               )),
           
+          IconButton(onPressed: () {
+
+            print("before=========================${hiveController.isCartAdded}") ;
+            notesModel.delete() ;
+            hiveController.cartList() ;
+            hiveController.saveCart() ;
+
+
+
+
+          }, icon: Icon(Icons.delete))
         ],
       ),
     );

@@ -8,7 +8,6 @@ import 'package:shop/services/api_services/api_services.dart';
 import 'package:shop/utils/app_url/app_urls.dart';
 import 'package:shop/views/screens/home/inner_widget/category/category_product.dart';
 
-import '../models/Product_Model.dart';
 
 class CategoryController extends GetxController{
   CategoryProduct_Model? product_model;
@@ -40,8 +39,8 @@ class CategoryController extends GetxController{
 
   }
 
-  Future<void> categoryProductRepo(String categoryId) async {
-    isLoading.value = true;
+  Future<void> categoryProductRepo(String categoryId, name) async {
+    // isLoading.value = true;
     var data = await ApiService.getApi(
         "${AppUrls.categoryWiseProduct}/$categoryId",
         {"Authorization": "Bearer ${SharePrefHelper.token}"});
@@ -52,7 +51,7 @@ class CategoryController extends GetxController{
       product_model = CategoryProduct_Model.fromJson(responseData);
       print('Status Code: ${data.statusCode}');
       print('Message: ${data.message}');
-      Get.to(CategoryProductScreen());
+      Get.to(CategoryProductScreen(name: name));
     }else {
       // Handle the error case here
       print('Error: ${data.statusCode}');
