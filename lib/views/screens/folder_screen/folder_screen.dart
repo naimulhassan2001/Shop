@@ -44,10 +44,9 @@ class FolderScreen extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text(AppString.yourFolder),
+        title: const Text(AppString.yourFolder, style: TextStyle(color: Color(0xFF54A630)),),
       ),
       body: SingleChildScrollView(
-          padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 24.h),
           child: Wrap(
             alignment: WrapAlignment.start,
 
@@ -59,7 +58,9 @@ class FolderScreen extends StatelessWidget {
                       folderName: item.folderName,
                     ));
                   },
-                  child: Stack(children: [
+                  child: Stack(
+                    clipBehavior: Clip.none,
+                      children: [
                     Container(
                       margin: EdgeInsets.only(left: 5.w, top: 5.h, bottom: 5.h),
                       decoration: BoxDecoration(
@@ -99,12 +100,8 @@ class FolderScreen extends StatelessWidget {
                     Positioned(
                         left: 16,
                         bottom: 8,
-                        child: Container(
-                          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 6),
-                          decoration: BoxDecoration(
-                              color: Colors.grey.withOpacity(0.6),
-                              borderRadius:
-                                  const BorderRadius.all(Radius.circular(20))),
+                        child: Padding(
+                          padding: const EdgeInsets.only(right: 8),
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
@@ -116,7 +113,6 @@ class FolderScreen extends StatelessWidget {
                               ),
                               Text(
                                 "Note: ${item.note}",
-                                maxLines: 1,
                                 overflow: TextOverflow.ellipsis,
                                 style: const TextStyle(fontSize: 12, color: Colors.white),
                               ),

@@ -119,7 +119,9 @@ class DetailsProductScreen extends StatelessWidget {
                               .attributes!.productImage!,
                           productDetailsController.productDetails_Model!.data!
                               .attributes!.productPrice!
-                              .toString());
+                              .toString(),
+                          productDetailsController.productDetails_Model!.data!
+                          .attributes!.sId! );
                     },
                     icon: CircleAvatar(
                         radius: 20.r,

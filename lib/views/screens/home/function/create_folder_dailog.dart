@@ -11,6 +11,7 @@ class FolderCreateDialog {
     String name,
     String image,
     String price,
+    String id,
   ) {
     FolderController folderController = Get.put(FolderController());
     TextEditingController folderNameController = TextEditingController();
@@ -61,6 +62,7 @@ class FolderCreateDialog {
                       image: image,
                       variant: "Gray",
                       price: price,
+                      id: id,
                       note: noteController.text);
                   folderController.folderList.add(data);
 

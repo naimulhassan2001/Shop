@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:shop/controllers/product_controller.dart';
+import 'package:shop/controllers/product_details_controller.dart';
 
 import '../../../../controllers/folder_controller.dart';
 import '../../../../utils/app_string.dart';
@@ -15,6 +17,7 @@ class FolderListScreen extends StatelessWidget {
   List folderList = [];
 
   FolderController folderController = Get.put(FolderController());
+  ProductDetailsController productDetailsController = Get.put(ProductDetailsController());
 
   @override
   Widget build(BuildContext context) {
@@ -28,22 +31,26 @@ class FolderListScreen extends StatelessWidget {
     if (folderList.length == 1) {
       var item = folderList[0];
 
+      print(item) ;
+
       Future.delayed(
         const Duration(milliseconds: 200),
         () {
-          Get.to(FolderDetailsScreen(
-              folderName: item.folderName,
-              note: item.note,
-              image: item.image,
-              productName: item.productName,
-              price: item.price));
+          productDetailsController.getProductDetailsRepo(
+              item.id!, item.productName!);
+
         },
       );
     }
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text(AppString.folderName),
+        title: Text(
+            folderList[0].folderName,
+          style: const TextStyle(
+            color: Color(0xFF54A630)
+          ),
+        ),
       ),
       body: SingleChildScrollView(
         child: Wrap(
@@ -53,8 +60,8 @@ class FolderListScreen extends StatelessWidget {
           children: folderList.map((item) {
             return GestureDetector(
                 onTap: () {
-                  // productDetailsController.getProductDetailsRepo(
-                  //     item.sId!, item.title);
+                  productDetailsController.getProductDetailsRepo(
+                      item.id!, item.productName!);
                 },
                 child: Stack(children: [
                   Container(
@@ -98,19 +105,28 @@ class FolderListScreen extends StatelessWidget {
                   Positioned(
                       left: 16,
                       bottom: 8,
-                      child: Container(
-                        padding: EdgeInsets.symmetric(horizontal: 16),
-                        decoration: BoxDecoration(
-                            color: Colors.grey.withOpacity(0.6),
-                            borderRadius: const BorderRadius.all(Radius.circular(30))
-                        ),
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
                         child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Text("Folder: ${item.folderName}", style: TextStyle(fontSize: 18,color: Colors.white),),
-                            Text("Note: ${item.note}", style: TextStyle(fontSize: 18,color: Colors.white),),
+                            Text(
+                              maxLines: 1,
+                              overflow: TextOverflow.ellipsis,
+                              "Folder: ${item.folderName}",
+                              style: const TextStyle(fontSize: 14, color: Colors.white),
+                            ),
+                            Text(
+                              "Note: ${item.note}",
+                              maxLines: 1,
+                              overflow: TextOverflow.ellipsis,
+                              style: const TextStyle(fontSize: 12, color: Colors.white),
+                            ),
+
                           ],
                         ),
                       ))
+
                 ]));
           }).toList(),
         ),

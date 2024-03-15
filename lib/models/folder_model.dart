@@ -7,6 +7,7 @@ class FolderModel {
   String variant;
   String price;
   String note;
+  String id;
 
 
 
@@ -18,5 +19,6 @@ class FolderModel {
     required this.variant,
     required this.price,
     required this.note,
+    required this.id,
   });
 }
