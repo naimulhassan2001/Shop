@@ -19,14 +19,14 @@ class CategoryWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
         margin: EdgeInsets.symmetric(vertical: 8.h, horizontal: 4.w),
-        height: 150.h,
+        height: 130.h,
         child: Obx(
           () => categoryController.isLoading.value
               ? const Center(
                   child: CircularProgressIndicator(),
                 )
               : ListView.builder(
-                  itemCount: categoryController!
+                  itemCount: categoryController
                       .categoryModel!.data!.attributes!.length,
                   scrollDirection: Axis.horizontal,
                   itemBuilder: (context, index) {
@@ -36,19 +36,17 @@ class CategoryWidget extends StatelessWidget {
                               .categoryModel!.data!.attributes![index].sId!,categoryController!
                           .categoryModel!.data!.attributes![index].name!),
                       child: Padding(
-                        padding: EdgeInsets.only(right: 8.0),
+                        padding: const EdgeInsets.only(right: 8.0),
                         child: Column(
                           children: [
                             Container(
-                              margin:
-                                  EdgeInsets.only(left: 5.w, top: 5.h, bottom: 5.h),
                               decoration: BoxDecoration(
                                 boxShadow: [
                                   BoxShadow(
                                       color: Colors.grey.shade400,
                                       blurRadius: 4,
                                       spreadRadius: 0,
-                                      offset: Offset(0, 2))
+                                      offset: const Offset(0, 2))
                                 ],
                                 borderRadius: BorderRadius.circular(12.r),
                                 color: Colors.white,
@@ -56,20 +54,17 @@ class CategoryWidget extends StatelessWidget {
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.center,
                                 children: [
-                                  Padding(
-                                    padding: EdgeInsets.all(4.w),
-                                    child: SizedBox(
-                                      height: 100.h,
-                                      width: 100.w,
-                                      child: ClipRRect(
-                                        borderRadius: BorderRadius.circular(12.r),
-                                        child: Image.network(
-                                            // "${AppUrls.imageUrl}${categoryController.categoryModel!.data!.attributes![index].categoryImage!}",
-                                          "${categoryController.categoryModel!.data!.attributes![index].categoryImage!}",
-                                            fit: BoxFit.fill,
+                                  SizedBox(
+                                    height: 100.h,
+                                    width: 100.w,
+                                    child: ClipRRect(
+                                      borderRadius: BorderRadius.circular(12.r),
+                                      child: Image.network(
+                                          // "${AppUrls.imageUrl}${categoryController.categoryModel!.data!.attributes![index].categoryImage!}",
+                                        categoryController.categoryModel!.data!.attributes![index].categoryImage!,
+                                          fit: BoxFit.fill,
 
-                                            ),
-                                      ),
+                                          ),
                                     ),
                                   ),
 
@@ -80,84 +75,12 @@ class CategoryWidget extends StatelessWidget {
                               height: 4.h,
                             ),
                             Text(categoryController!.categoryModel!.data!
-                                .attributes![index].name!, style: TextStyle(color: Color(0xFF54A630)),)
+                                .attributes![index].name!, style: const TextStyle(color: Color(0xFF54A630)),)
                           ],
                         ),
                       ),
                     );
                   },
-                  // scrollDirection: Axis.horizontal,
-                  // children: [
-                  //
-                  //   Column(
-                  //     crossAxisAlignment: CrossAxisAlignment.start,
-                  //     children: [
-                  //       Container(
-                  //         margin: EdgeInsets.only(right: 25.w),
-                  //         height: 50.h,
-                  //         width: 50.w,
-                  //         decoration: BoxDecoration(
-                  //           borderRadius: BorderRadius.circular(12.r),
-                  //           color: const Color(0xFFEDF7FF),
-                  //         ),
-                  //         child: Image.asset(AppIcon.fashion2),
-                  //       ),
-                  //       const Text(AppString.school)
-                  //     ],
-                  //   ),
-                  //   Column(
-                  //     crossAxisAlignment: CrossAxisAlignment.start,
-                  //     children: [
-                  //       Container(
-                  //         margin: EdgeInsets.only(right: 25.w),
-                  //         height: 50.h,
-                  //         width: 50.w,
-                  //         decoration: BoxDecoration(
-                  //           borderRadius: BorderRadius.circular(12.r),
-                  //           color: const Color(0xFFFFEDDD),
-                  //         ),
-                  //         child: Image.asset(AppIcon.fashion3),
-                  //       ),
-                  //       const Text(AppString.sports)
-                  //     ],
-                  //   ),
-                  //   Column(
-                  //     crossAxisAlignment: CrossAxisAlignment.start,
-                  //     children: [
-                  //       Container(
-                  //         margin: EdgeInsets.only(right: 25.w),
-                  //         height: 50.h,
-                  //         width: 50.w,
-                  //         decoration: BoxDecoration(
-                  //           borderRadius: BorderRadius.circular(12.r),
-                  //           color: const Color(0xFFFFEDDD),
-                  //         ),
-                  //         child: Image.asset(AppIcon.fashion4),
-                  //       ),
-                  //       const Text(AppString.electronic)
-                  //     ],
-                  //   ),
-                  //   Column(
-                  //     crossAxisAlignment: CrossAxisAlignment.start,
-                  //     children: [
-                  //       Container(
-                  //         margin: EdgeInsets.only(right: 25.w),
-                  //         height: 50.h,
-                  //         width: 50.w,
-                  //         decoration: BoxDecoration(
-                  //           borderRadius: BorderRadius.circular(12.r),
-                  //           color: const Color(0xFFFFEDDD),
-                  //         ),
-                  //         child: Image.asset(AppIcon.all),
-                  //       ),
-                  //       Container(
-                  //           margin: EdgeInsets.only(left: 6.w),
-                  //           child: const Text(
-                  //             AppString.more,
-                  //           ))
-                  //     ],
-                  //   ),
-                  // ],
                 ),
         ));
   }

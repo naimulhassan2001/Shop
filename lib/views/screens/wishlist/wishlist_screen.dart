@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:hive_flutter/adapters.dart';
+import 'package:masonry_list_view_grid/masonry_list_view_grid.dart';
 import 'package:shop/models/boxes.dart';
 import 'package:shop/models/hive_model.dart';
 import 'package:shop/views/screens/wishlist/inner_widget/wishlist_item.dart';
@@ -20,112 +21,78 @@ class WishlistScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Wishlist", style: TextStyle(color: Colors.green),),
+        title: const Text(
+          "Wishlist",
+          style: TextStyle(color: Colors.green),
+        ),
       ),
       body: Column(
         children: [
-
           Expanded(
             child: ValueListenableBuilder(
               valueListenable: Boxes.getData().listenable(),
               builder: (context, box, child) {
                 var data = box.values.toList().cast<NotesModel>();
-                return Wrap(
-                  alignment: WrapAlignment.start,
 
-                  // runSpacing: 10.0,
-                  children: box.values.map((item) {
-                    return GestureDetector(
-                        onTap: () {
-                          // productDetailsController.getProductDetailsRepo(
-                          //     item.sId!, item.title);
-                        },
-                        child: Stack(children: [
-                          Container(
-                            margin: EdgeInsets.only(
-                                left: 5.w, top: 5.h, bottom: 5.h),
+                return MasonryListViewGrid(
+                    column: 2,
+                    padding: const EdgeInsets.all(8.0),
+                    children: List.generate(
+                      data.length,
+                      (index) {
+                        NotesModel item = data[index];
+                        return GestureDetector(
+                          onTap: () {
+                            // productDetailsController.getProductDetailsRepo(
+                            //     item.sId!, item.productName!);
+                          },
+                          child: Container(
                             decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(12.r),
-                              color: Colors.white,
+                              borderRadius: BorderRadius.circular(4.r),
+                              border: Border.all(
+                                color: const Color(0xFF54A630),
+                              ),
+                              boxShadow: [
+                                BoxShadow(
+                                    color: Colors.grey.shade300,
+                                    blurRadius: 10,
+                                    spreadRadius: 1,
+                                    offset: Offset(0, 0))
+                              ],
                             ),
-                            child: Chip(
-                              padding: EdgeInsets.zero,
-                              shape: RoundedRectangleBorder(
-                                  borderRadius:
-                                      BorderRadius.all(Radius.circular(16.r)),
-                                  side: const BorderSide(
-                                    color: Colors.transparent,
-                                  )),
-                              label: Image.network(
-                                item.image,
-                                height: 250,
-                                fit: BoxFit.fill,
+                            child: ClipRRect(
+                              borderRadius: BorderRadius.circular(4.r),
+                              child: Stack(
+                                children: [
+                                  Image.network(
+                                    item.image,
+                                    fit: BoxFit.fitHeight,
+                                  ),
+                                  Positioned(
+                                      right: -8,
+                                      bottom: -8,
+                                      child: IconButton(
+                                          onPressed: () {
+                                            print(
+                                                "before=========================${hiveController.isCartAdded}");
+                                            item.delete();
+                                            hiveController.cartList();
+                                            hiveController.saveCart();
+                                          },
+                                          icon: const Icon(
+                                            Icons.delete,
+                                            color: Colors.red,
+                                          )))
+                                ],
                               ),
                             ),
                           ),
-                          Positioned(
-                              right: 0,
-                              bottom: 8,
-                              child: IconButton(
-                                  onPressed: () {
-                                    print(
-                                        "before=========================${hiveController.isCartAdded}");
-                                    item.delete();
-                                    hiveController.cartList();
-                                    hiveController.saveCart();
-                                  },
-                                  icon: const Icon(Icons.delete, color: Colors.red,)))
-                        ]));
-                  }).toList(),
-                );
-                // return ListView.builder(
-                //   itemCount: box.length,
-                //   itemBuilder: (context, index) {
-                //     NotesModel noteModel = data[index];
-                //
-                //
-                //
-                //     return GestureDetector(
-                //         onTap: () {
-                //           // Get.to(ProductDetailPage(
-                //           //   id: id,
-                //           //   name: name,
-                //           //   price: price,
-                //           //   stockQuantity: stock,
-                //           //   url: url,
-                //           //   value: true,
-                //           // ));
-                //         },
-                //         child: WishLisListItem(
-                //           notesModel: noteModel,
-                //
-                //         ));
-                //   },
-                // );
+                        );
+                      },
+                    ));
               },
             ),
           ),
-          //         Row(
-          //           mainAxisAlignment: MainAxisAlignment.center,
-          //           crossAxisAlignment: CrossAxisAlignment.center,
-          //           children: [
-          //             ElevatedButton(
-          //                 style: ElevatedButton.styleFrom(
-          //                     backgroundColor:  Colors.blue),
-          //                 onPressed: () {
-          //                   if (cartController.number.value != 0) {
-          //                     Get.to(Payment(
-          //                       price: cartController.setAllPrice(),
-          //                       onTap: onTap,
-          //                     ));
-          //                   } else {
-          //                     Get.snackbar(ConstString.cart, ConstString.cartIsEmpty);
-          //                   }
-          //                 },
-          //                 child: const Text(ConstString.checkOut, style: TextStyle(color: Colors.white),)),
-          //           ],
-          //         ),
-          // );
         ],
       ),
     );

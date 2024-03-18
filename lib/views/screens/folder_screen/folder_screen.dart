@@ -1,13 +1,12 @@
-import 'dart:collection';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:masonry_list_view_grid/masonry_list_view_grid.dart';
 
 import '../../../controllers/folder_controller.dart';
 import '../../../utils/app_string.dart';
 import 'folder_list_screen/folder_list_screen.dart';
-import 'inner_widget/folder_item.dart';
 
 class FolderScreen extends StatelessWidget {
   FolderScreen({super.key});
@@ -44,84 +43,77 @@ class FolderScreen extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text(AppString.yourFolder, style: TextStyle(color: Color(0xFF54A630)),),
+        title: const Text(
+          AppString.yourFolder,
+          style: TextStyle(color: Color(0xFF54A630)),
+        ),
       ),
-      body: SingleChildScrollView(
-          child: Wrap(
-            alignment: WrapAlignment.start,
-
-            // runSpacing: 10.0,
-            children: folder.map((item) {
+      body: MasonryListViewGrid(
+          column: 2,
+          padding: const EdgeInsets.all(8.0),
+          children: List.generate(
+            folder.length,
+            (index) {
+              var item = folder[index];
               return GestureDetector(
-                  onTap: () {
-                    Get.to(FolderListScreen(
-                      folderName: item.folderName,
-                    ));
-                  },
-                  child: Stack(
-                    clipBehavior: Clip.none,
-                      children: [
-                    Container(
-                      margin: EdgeInsets.only(left: 5.w, top: 5.h, bottom: 5.h),
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(12.r),
-                        color: Colors.white,
-                      ),
-                      child: Chip(
-                        padding: EdgeInsets.zero,
-                        shape: RoundedRectangleBorder(
-                            borderRadius:
-                                BorderRadius.all(Radius.circular(16.r)),
-                            side: const BorderSide(
-                              color: Colors.transparent,
-                            )),
-                        label: Image.network(
-                          item.image,
-                          height: 250,
-                          fit: BoxFit.fill,
-                        ),
-                      ),
+                onTap: () {
+                  Get.to(FolderListScreen(
+                    folderName: item.folderName,
+                  ));
+                },
+                child: Container(
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(4.r),
+                    border: Border.all(
+                      color: const Color(0xFF54A630),
                     ),
-                    // Positioned(
-                    //     right: 0,
-                    //     bottom: 8,
-                    //     child: IconButton(
-                    //         onPressed: () {
-                    //           // print(
-                    //           //     "before=========================${hiveController.isCartAdded}");
-                    //           // item.delete();
-                    //           // hiveController.cartList();
-                    //           // hiveController.saveCart();
-                    //         },
-                    //         icon: const Icon(
-                    //           Icons.delete,
-                    //           color: Colors.red,
-                    //         ))),
-                    Positioned(
-                        left: 16,
-                        bottom: 8,
-                        child: Padding(
-                          padding: const EdgeInsets.only(right: 8),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                maxLines: 1,
-                                overflow: TextOverflow.ellipsis,
-                                "Folder: ${item.folderName}",
-                                style: const TextStyle(fontSize: 14, color: Colors.white),
+                    boxShadow: [
+                      BoxShadow(
+                          color: Colors.grey.shade300,
+                          blurRadius: 10,
+                          spreadRadius: 1,
+                          offset: const Offset(0, 0))
+                    ],
+                  ),
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(4.r),
+                    child: Stack(
+                      children: [
+                        Image.network(
+                          item.image,
+                          fit: BoxFit.fitHeight,
+                        ),
+                        Positioned(
+                            left: 16,
+                            bottom: 0,
+                            child: Padding(
+                              padding: const EdgeInsets.only(right: 8),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    maxLines: 1,
+                                    overflow: TextOverflow.ellipsis,
+                                    "Folder: ${item.folderName}",
+                                    style: const TextStyle(
+                                        fontSize: 14, color: Colors.white),
+                                  ),
+                                  Text(
+                                    "Note: ${item.note}",
+                                    overflow: TextOverflow.ellipsis,
+                                    style: const TextStyle(
+                                        fontSize: 12, color: Colors.white),
+                                  ),
+                                ],
                               ),
-                              Text(
-                                "Note: ${item.note}",
-                                overflow: TextOverflow.ellipsis,
-                                style: const TextStyle(fontSize: 12, color: Colors.white),
-                              ),
+                            ))
+                      ],
+                    ),
+                  ),
+                ),
 
-                            ],
-                          ),
-                        ))
-                  ]));
-            }).toList(),
+              );
+            },
           )),
     );
   }

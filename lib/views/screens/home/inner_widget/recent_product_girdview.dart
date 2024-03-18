@@ -1,6 +1,9 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:masonry_list_view_grid/masonry_list_view_grid.dart';
 import 'package:shop/controllers/product_controller.dart';
 import 'package:shop/controllers/product_details_controller.dart';
 import 'package:shop/utils/app_url/app_urls.dart';
@@ -31,40 +34,43 @@ class RecentProductGirdView extends StatelessWidget {
             child: CircularProgressIndicator(),
           )
         : SizedBox(
-            child: Wrap(
-            alignment: WrapAlignment.spaceAround,
+            height: 300.h,
+            child: MasonryListViewGrid(
+                column: 2,
+                padding: const EdgeInsets.all(8.0),
+                children: List.generate(
+                  productController.product_model!.data!.attributes!.length,
+                  (index) {
+                    var item = productController
+                        .product_model!.data!.attributes![index];
+                    return GestureDetector(
+                      onTap: () {
+                        productDetailsController.getProductDetailsRepo(
+                            item.sId!, item.productName!);
+                      },
+                      child: Container(
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(4.r),
+                          border: Border.all(color: const Color(0xFF54A630),),
 
-            // runSpacing: 10.0,
-            children:
-                productController.product_model!.data!.attributes!.map((item) {
-              return GestureDetector(
-                onTap: () {
-                  productDetailsController.getProductDetailsRepo(
-                      item.sId!, item.productName!);
-                },
-                child: Container(
-                  margin: EdgeInsets.only(left: 5.w, top: 5.h, bottom: 5.h),
-                  decoration: BoxDecoration(
-
-                    borderRadius: BorderRadius.circular(12.r),
-                    color: Colors.white,
-                  ),
-                  child: Chip(
-                    padding: EdgeInsets.zero,
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.all(Radius.circular(16.r)),
-                        side: const BorderSide(
-                          color: Colors.transparent,
-                        )),
-                    label: Image.network(
-                      item.productImage!,
-                      height: 250,
-                      fit: BoxFit.fill,
-                    ),
-                  ),
-                ),
-              );
-            }).toList(),
-          )));
+                          boxShadow: [
+                            BoxShadow(
+                                color: Colors.grey.shade300,
+                                blurRadius: 10,
+                                spreadRadius: 1,
+                                offset: Offset(0, 0))
+                          ],
+                        ),
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.circular(4.r),
+                          child: Image.network(
+                            item.productImage!,
+                            fit: BoxFit.fitHeight,
+                          ),
+                        ),
+                      ),
+                    );
+                  },
+                ))));
   }
 }

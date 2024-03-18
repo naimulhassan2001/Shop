@@ -21,7 +21,7 @@ class HomeScreenSilder extends StatelessWidget {
             itemCount: homeController.silderModel!.data!.attributes!.length,
             options: CarouselOptions(
               autoPlay: true,
-              height: 200.h,
+              height: 180.h,
               aspectRatio: 5.5,
               autoPlayAnimationDuration: const Duration(seconds: 1),
               reverse: false,
@@ -30,7 +30,7 @@ class HomeScreenSilder extends StatelessWidget {
               var item = homeController.silderModel!.data!.attributes?[index];
               return GestureDetector(
                 child: Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 12.w, vertical: 24.h),
+                  padding: EdgeInsets.all(10.sp),
                   child: Container(
                     height: 200.h,
                     width: 400.w,

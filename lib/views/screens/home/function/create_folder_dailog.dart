@@ -67,6 +67,7 @@ class FolderCreateDialog {
                   folderController.folderList.add(data);
 
                   Get.back();
+                  Get.snackbar("Folder", "Folder Create successful") ;
                 },
                 child: const Text(AppString.create)),
           ],

@@ -1,4 +1,3 @@
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
@@ -16,9 +15,8 @@ import 'inner_widget/home_screen_slider.dart';
 import 'inner_widget/recent_product_girdview.dart';
 import 'inner_widget/search_widget.dart';
 
-
 class HomeScreen extends StatefulWidget {
-   HomeScreen({super.key});
+  HomeScreen({super.key});
 
   @override
   State<HomeScreen> createState() => _HomeScreenState();
@@ -29,10 +27,11 @@ class _HomeScreenState extends State<HomeScreen> {
 
   ProductController productController = Get.put(ProductController());
 
-  HomeController homeController = Get.put(HomeController()) ;
+  HomeController homeController = Get.put(HomeController());
+
   @override
   void initState() {
-    homeController.getSliderRepo() ;
+    homeController.getSliderRepo();
     super.initState();
   }
 
@@ -40,54 +39,38 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            // Text(AppString.deliveryAddress,style: TextStyle(color: Colors.black87, fontSize: 14.sp),),
-            Text(AppString.newShop,style: TextStyle(fontSize: 19.sp),)
-          ],
+        toolbarHeight: 30,
+        title: Text(
+          AppString.newShop,
+          style: TextStyle(fontSize: 19.sp),
         ),
-
         actions: [
-          // IconButton(onPressed: (){
-          //   Get.to(YourCartScreen());
-          // }, icon: const Icon(Icons.shopping_cart)),
-          // IconButton(onPressed: (){}, icon: const Icon(Icons.notifications_none_outlined))
-          IconButton(onPressed: (){
-            Get.to(SearchScreen());
-          }, icon: const Icon(Icons.search)),
+          IconButton(
+              onPressed: () {
+                Get.to(SearchScreen());
+              },
+              icon: const Icon(Icons.search)),
         ],
       ),
 
-
       /// body part
-      body:  Padding(
+      body: Padding(
         padding: EdgeInsets.all(8.w),
-        child: SingleChildScrollView(
-          physics: const BouncingScrollPhysics(),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              // Padding(
-              //     padding: EdgeInsets.symmetric(horizontal: 8.w),
-              //     child: const SearchWidget()),
-
-              // SizedBox(height: 50,),
-              HomeScreenSilder(),
-              // SizedBox(height: 50,),
-
-               Padding(
-                 padding: EdgeInsets.only(left: 8.w),
-                   child: const Text(AppString.category, style: TextStyle(fontSize: 18, color: Color(0xFF54A630)))),
-                CategoryWidget(),
-              SizedBox(height: 5.h,),
-              Padding(
-                  padding: EdgeInsets.only(left: 8.w),
-                  child: const Text(AppString.recentProduct, style: TextStyle(fontSize: 18,color: Color(0xFF54A630)))),
-              SizedBox(height: 5.h,),
-               RecentProductGirdView(),
-            ],
-          ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            HomeScreenSilder(),
+            Padding(
+                padding: EdgeInsets.only(left: 8.w, top: 10.h),
+                child: const Text(AppString.category,
+                    style: TextStyle(fontSize: 18, color: Color(0xFF54A630)))),
+            CategoryWidget(),
+            Padding(
+                padding: EdgeInsets.only(left: 8.w),
+                child: const Text(AppString.recentProduct,
+                    style: TextStyle(fontSize: 18, color: Color(0xFF54A630)))),
+            RecentProductGirdView(),
+          ],
         ),
       ),
     );
